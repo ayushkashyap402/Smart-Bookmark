@@ -75,9 +75,10 @@ export default function AddBookmarkForm({
         url: url.trim(),
       };
       
-      const { error: insertError } = await supabase
+      // Type assertion to work around Supabase type inference issues
+      const { error: insertError } = await (supabase
         .from("bookmarks")
-        .insert(bookmarkData);
+        .insert(bookmarkData) as any);
 
       if (insertError) {
         setError(insertError.message || "Failed to add bookmark");
