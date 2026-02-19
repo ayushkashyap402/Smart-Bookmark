@@ -1,6 +1,7 @@
 "use client";
 
 import { createClient } from "@/lib/supabaseClient";
+import type { TablesInsert } from "@/types/database";
 import { User } from "@supabase/supabase-js";
 import { useState } from "react";
 
@@ -67,8 +68,8 @@ export default function AddBookmarkForm({
     try {
       const supabase = createClient();
 
-      // Insert bookmark into database
-      const bookmarkData: any = {
+      // Insert bookmark into database with proper typing
+      const bookmarkData: TablesInsert<"bookmarks"> = {
         user_id: user.id,
         title: title.trim(),
         url: url.trim(),

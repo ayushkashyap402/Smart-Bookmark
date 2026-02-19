@@ -1,16 +1,11 @@
 "use client";
 
 import { createClient } from "@/lib/supabaseClient";
+import type { Tables } from "@/types/database";
 import { User } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 
-interface Bookmark {
-  id: string;
-  user_id: string;
-  title: string;
-  url: string;
-  created_at: string;
-}
+type Bookmark = Tables<"bookmarks">;
 
 interface BookmarkListProps {
   user: User | null;
