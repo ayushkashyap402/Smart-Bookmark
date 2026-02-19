@@ -96,7 +96,7 @@ export default function AddBookmarkForm({
     setLoading(true);
 
     try {
-      const supabase = createClient<Database>();
+      const supabase = createClient();
 
       // Insert bookmark into database
       const { error: insertError } = await supabase
