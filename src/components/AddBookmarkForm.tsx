@@ -4,37 +4,6 @@ import { createClient } from "@/lib/supabaseClient";
 import { User } from "@supabase/supabase-js";
 import { useState } from "react";
 
-// Define database types
-interface Database {
-  public: {
-    Tables: {
-      bookmarks: {
-        Row: {
-          id: string;
-          user_id: string;
-          title: string;
-          url: string;
-          created_at: string;
-        };
-        Insert: {
-          id?: string;
-          user_id: string;
-          title: string;
-          url: string;
-          created_at?: string;
-        };
-        Update: {
-          id?: string;
-          user_id?: string;
-          title?: string;
-          url?: string;
-          created_at?: string;
-        };
-      };
-    };
-  };
-}
-
 interface AddBookmarkFormProps {
   user: User | null;
   onBookmarkAdded: () => void;
@@ -105,7 +74,7 @@ export default function AddBookmarkForm({
           user_id: user.id,
           title: title.trim(),
           url: url.trim(),
-        });
+        } as any);
 
       if (insertError) {
         setError(insertError.message || "Failed to add bookmark");
