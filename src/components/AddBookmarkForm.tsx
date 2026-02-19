@@ -68,13 +68,15 @@ export default function AddBookmarkForm({
       const supabase = createClient();
 
       // Insert bookmark into database
+      const bookmarkData: any = {
+        user_id: user.id,
+        title: title.trim(),
+        url: url.trim(),
+      };
+      
       const { error: insertError } = await supabase
         .from("bookmarks")
-        .insert({
-          user_id: user.id,
-          title: title.trim(),
-          url: url.trim(),
-        } as any);
+        .insert(bookmarkData);
 
       if (insertError) {
         setError(insertError.message || "Failed to add bookmark");
